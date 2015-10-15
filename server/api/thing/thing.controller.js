@@ -41,12 +41,28 @@ exports.create = function(req, res) {
 exports.sendStripePayment = function(req, res, next) {
     var stripeToken = req.body.token.id;
     var amount = req.body.amount;
+    var address = req.body.address;
+    var cart = JSON.stringify(req.body.cart);
+    var shippingAddress = {
+      name: address.shipping_name,
+      address: {
+        city: address.shipping_address_city,
+         country: address.shipping_address_country_code,
+         line1: address.shipping_address_line1,
+         line2: address.shipping_address_line2 || '',
+         postal_code: address.shipping_address_zip,
+         state: address.shipping_address_state
+       }
+     };
 
       var charge = stripe.charges.create({
         amount: amount*100, // amount in cents, again
         currency: "usd",
         source: stripeToken,
-        description: "Deposit charge"
+        description: cart,
+        metadata: {address: JSON.stringify(address), email: stripeToken.email, cart: cart},
+        receipt_email: stripeToken.email,
+        shipping: shippingAddress
       })
       .then(function(charge){
         console.log(charge);
@@ -81,10 +97,10 @@ exports.sendStripePayment = function(req, res, next) {
               err.message = "Stripe couldn't process your request. Your card was not charged. Please try again.";
               break;
           }
-        return validationError(res, err.message);
+        return res.status(500).send(err.message);
         } else {
           err.message = "An internal error occurred. Please contact support@rivlr.com"
-          return validationError(res, err.message);
+          return res.status(500).send(err.message);
         }
       })
 
