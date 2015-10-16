@@ -19,7 +19,7 @@ var config = require('./config/environment');
 // 	}
 // );
 // Populate DB with sample data
-if(config.seedDB) { require('./config/seed'); }
+// if(config.seedDB) { require('./config/seed'); }
 
 // Setup server
 var app = express();

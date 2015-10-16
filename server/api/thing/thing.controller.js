@@ -11,7 +11,7 @@
 
 var _ = require('lodash');
 var Thing = require('./thing.model');
-var stripe = require("stripe")("sk_test_xZ6eznYeZYCT53QJgJY5De7F");
+var stripe = require("stripe")("sk_test_nhajv4RXGZpiYGeJ0uFMwRms");
 
 // Get list of things
 exports.index = function(req, res) {
@@ -43,6 +43,17 @@ exports.sendStripePayment = function(req, res, next) {
     var amount = req.body.amount;
     var address = req.body.address;
     var cart = JSON.stringify(req.body.cart);
+    function createDescription(cart){
+      var description = "";
+      for (var i = 0; i < cart.length; i++) {
+        if (i > 0) {
+          description+= ', ';
+        }
+        description += cart[i]._quantity + ' ' + cart[i]._name;
+      };
+      return description;
+    }
+
     var shippingAddress = {
       name: address.shipping_name,
       address: {
@@ -59,7 +70,7 @@ exports.sendStripePayment = function(req, res, next) {
         amount: amount*100, // amount in cents, again
         currency: "usd",
         source: stripeToken,
-        description: cart,
+        description: createDescription(req.body.cart),
         metadata: {address: JSON.stringify(address), email: stripeToken.email, cart: cart},
         receipt_email: stripeToken.email,
         shipping: shippingAddress
