@@ -11,7 +11,8 @@
 
 var _ = require('lodash');
 var Thing = require('./thing.model');
-var stripe = require("stripe")("sk_test_nhajv4RXGZpiYGeJ0uFMwRms");
+var stripeKey = process.env.STRIPE_KEY || '';
+var stripe = require("stripe")(stripeKey);
 
 // Get list of things
 exports.index = function(req, res) {

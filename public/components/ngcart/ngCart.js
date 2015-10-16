@@ -37,7 +37,7 @@ angular.module('ngCart', ['ngCart.directives'])
                 items : []
             };
         };
-
+        
         this.addItem = function (id, name, price, quantity, data) {
 
             var inCart = this.getItemById(id);
@@ -372,7 +372,6 @@ angular.module('ngCart.directives', ['ngCart.fulfilment'])
                 } else {
                     scope.q = parseInt(scope.quantity);
                 }
-
                 scope.qtyOpt =  [];
                 for (var i = 1; i <= scope.quantityMax; i++) {
                     scope.qtyOpt.push(i);

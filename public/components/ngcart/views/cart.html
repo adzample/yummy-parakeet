@@ -36,7 +36,7 @@
             <td></td>
             <td></td>
             <td>Total:</td>
-            <td>{{ ngCart.totalCost() | currency }}</td>
+            <td>{{ ngCart.totalCost()-$root.discountee | currency }}</td>
         </tr>
         </tfoot>
         <tbody>
