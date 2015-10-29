@@ -72,7 +72,7 @@ exports.sendStripePayment = function(req, res, next) {
         currency: "usd",
         source: stripeToken,
         description: createDescription(req.body.cart),
-        metadata: {address: JSON.stringify(address), email: stripeToken.email, cart: cart},
+        metadata: {email: stripeToken.email, cart: cart},
         receipt_email: stripeToken.email,
         shipping: shippingAddress
       })
