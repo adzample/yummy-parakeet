@@ -4,6 +4,7 @@
   "main": "server/app.js",
   "dependencies": {
     "angulartics": "^0.20.1",
+    "angulartics-facebook-pixel": "^0.1.0",
     "angulartics-google-analytics": "^0.1.1",
     "body-parser": "~1.5.0",
     "composable-middleware": "^0.3.0",
