@@ -1,0 +1,18 @@
+{
+  "name": "angular-optmizely",
+  "version": "0.0.3",
+  "main": "ngshowvariant.js",
+  "dependencies": {
+    "angular": "~1.2.6"
+  },
+  "homepage": "https://github.com/mattvv/angular-optimizely",
+  "_release": "0.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.3",
+    "commit": "f0ffe5af3df978db730b10ef2cffb3beb69e47be"
+  },
+  "_source": "git://github.com/mattvv/angular-optimizely.git",
+  "_target": "~0.0.3",
+  "_originalSource": "angular-optimizely"
+}
