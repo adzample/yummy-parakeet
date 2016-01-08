@@ -16,7 +16,7 @@ exports.sendMail = function(req, res) {
                     '<p>Email: ' + req.body.email + '</p>' +
                     '<p>Message: ' + req.body.message + '</p>';
   var mailOptions = {
-    to: 'robbieferguson139@gmail.com',                  // your email here
+    to: 'dankwheels@gmail.com',                  // your email here
     subject: 'New message from Dwheels',
     from: req.body.name + ' <' + req.body.email + '>',
     sender: req.body.email,
